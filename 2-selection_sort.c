@@ -7,9 +7,9 @@
  */
 void swap(int *a, int *b)
 {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 /**
@@ -20,20 +20,20 @@ void swap(int *a, int *b)
  */
 void selection_sort(int *array, size_t size)
 {
-    unsigned i, j, index_of_min;
+	unsigned i, j, index_of_min;
 
-    /* for each unsorted subarray starting i to the end */
-    for (i = 0; i < size - 1; ++i)
-    {
-        /* suppose that the first element is the min */
-        index_of_min = i;
-        /* find min */
-        for (j = i + 1; j < size; ++j)
-            if (array[j] < array[index_of_min])
-                index_of_min = j;
+	/* for each unsorted subarray starting i to the end */
+	for (i = 0; i < size - 1; ++i)
+	{
+		/* suppose that the first element is the min */
+		index_of_min = i;
+		/* find min */
+		for (j = i + 1; j < size; ++j)
+			if (array[j] < array[index_of_min])
+				index_of_min = j;
 
-        /* swap min with the first element in the unsorted subarray */
-        swap(array + i, array + index_of_min);
-        print_array(array, size);
-    }
+		/* swap min with the first element in the unsorted subarray */
+		swap(array + i, array + index_of_min);
+		print_array(array, size);
+	}
 }
