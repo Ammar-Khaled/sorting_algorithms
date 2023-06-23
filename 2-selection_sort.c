@@ -20,7 +20,7 @@ void swap(int *a, int *b)
  */
 void selection_sort(int *array, size_t size)
 {
-	unsigned i, j, index_of_min;
+	unsigned int i, j, index_of_min;
 
 	/* for each unsorted subarray starting i to the end */
 	for (i = 0; i < size - 1; ++i)
@@ -33,7 +33,11 @@ void selection_sort(int *array, size_t size)
 				index_of_min = j;
 
 		/* swap min with the first element in the unsorted subarray */
-		swap(array + i, array + index_of_min);
-		print_array(array, size);
+		if (index_of_min != i)
+		{
+			swap(array + i, array + index_of_min);
+			print_array(array, size);
+		}
+
 	}
 }
