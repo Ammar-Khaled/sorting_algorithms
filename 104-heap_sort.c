@@ -72,7 +72,7 @@ void heap_sort(int *array, size_t size)
 		heapify(array, size, i, size);
 	}
 
-	for (i = size - 1; i >= 0; i--)
+	for (i = size - 1; i > 0; i--)
 	{
 		/*
 		 * swap the root of the heap, which is the max of the array
