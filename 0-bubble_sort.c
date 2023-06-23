@@ -19,7 +19,7 @@ void swap(int *a, int *b)
  */
 void bubble_sort(int *array, size_t size)
 {
-	unsigned swapped = 0, i, j;
+	unsigned int swapped = 0, i, j;
 
 	/* loop n-1 iterations */
 	for (i = 0; i < size - 1; ++i)

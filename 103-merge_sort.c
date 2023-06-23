@@ -1,9 +1,16 @@
 #include "sort.h"
 #include <stdio.h>
 
-/* Merges two sorted sub-arrays of array[]. */
-/* First subarray is arr[begin..mid] */
-/* Second subarray is arr[mid+1..end] */
+/**
+ * merge - Merges two sorted sub-arrays of array[].
+ * First subarray is arr[begin..mid]
+ * Second subarray is arr[mid+1..end]
+ * @array: array of integers
+ * @begin: the starting index
+ * @mid: the mid index
+ * @end: the ending index
+ * @buffer: axulary buffer
+ */
 void merge(int *array, int begin, int mid, int end, int *buffer)
 {
 	int len1, i, j, index1, index2, merged_index;
@@ -11,14 +18,12 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	printf("Merging...\n");
 
 	len1 = mid - begin + 1;
-
 	/* Copy data to temp buffer leftArray and rightArray */
 	printf("[left]: ");
 	i = 0;
 	for (; i < len1; i++)
-	{
 		buffer[i] = array[begin + i];
-	}
+	
 	print_array(buffer, len1);
 
 	printf("[right]: ");
@@ -67,6 +72,13 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	print_array(array, end + 1);
 }
 
+/**
+ * devide_conquer - recursive merge sort
+ * @array: array of integers
+ * @begin: the starting index
+ * @end: the ending index
+ * @buffer: axulary buffer
+ */
 void devide_conquer(int *array, int begin, int end, int *buffer)
 {
 	int mid;
@@ -83,6 +95,11 @@ void devide_conquer(int *array, int begin, int end, int *buffer)
 	merge(array, begin, mid, end, buffer);
 }
 
+/**
+ * merge_sort - sort array of integers ascendingly using Merge sort Algorithm
+ * @array: array
+ * @size: size
+ */
 void merge_sort(int *array, size_t size)
 {
 	int *buffer;
@@ -94,7 +111,7 @@ void merge_sort(int *array, size_t size)
 	devide_conquer(array, 0, size - 1, buffer);
 }
 
-/**
+/*
  * Analysis
  * Space: O(n)
  * Time: O(nlog(n))

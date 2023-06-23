@@ -49,7 +49,7 @@ void counting_sort(int *array, size_t size)
 	free(output);
 }
 
-/**
+/*
  * Analysis
  * Space: O(n + k)
  * Time: O(n + k)
