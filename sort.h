@@ -19,7 +19,6 @@ typedef struct listint_s
 } listint_t;
 
 void print_array(const int *array, size_t size);
-
 void print_list(const listint_t *list);
 
 void swap(int *a, int *b);
@@ -38,5 +37,8 @@ void counting_sort(int *array, size_t size);
 
 void merge_sort(int *array, size_t size);
 void devide_conquer(int *array, int begin, int end, int *buffer);
+
+void heap_sort(int *array, size_t size);
+void heapify(int *array, size_t size, int i, size_t total_size);
 
 #endif
