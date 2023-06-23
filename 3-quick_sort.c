@@ -20,6 +20,7 @@ void swap(int *a, int *b)
  * @array: array of integers
  * @low: the starting index
  * @high: the ending index
+ * @size: size of the whole array => required for printing
  * Return: index of the `pivot` after placing in the right place
  */
 int partition(int *array, int low, int high, size_t size)
@@ -49,7 +50,10 @@ int partition(int *array, int low, int high, size_t size)
 			}
 		}
 	}
-	/* putting pivot in right place by swapping it with the first greater element */
+	/*
+	 * putting pivot in right place
+	 * by swapping it with the first greater element
+	*/
 	if (i + 1 != high)
 	{
 		swap(array + i + 1, array + high);
@@ -64,6 +68,7 @@ int partition(int *array, int low, int high, size_t size)
  * @array: array of integers
  * @low: the starting index
  * @high: the ending index
+ * @size: size of the whole array => required for printing
  */
 void q_sort(int *array, int low, int high, size_t size)
 {
