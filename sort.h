@@ -41,4 +41,7 @@ void devide_conquer(int *array, int begin, int end, int *buffer);
 void heap_sort(int *array, size_t size);
 void heapify(int *array, size_t size, int i, size_t total_size);
 
+void count_sort_for_radix(int *array, int n, int placement_value);
+void radix_sort(int *array, size_t size);
+
 #endif
