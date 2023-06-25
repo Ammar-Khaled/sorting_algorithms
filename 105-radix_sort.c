@@ -21,6 +21,11 @@ void count_sort_for_radix(int *array, int n, int placement_value)
         exit(EXIT_FAILURE);
     }
 
+    for (i = 0; i < 10; i++)
+    {
+        count[i] = 0;
+    }
+
     /* store number of occurrences in count[] */
     for (i = 0; i < n; ++i)
     {
