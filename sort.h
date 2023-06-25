@@ -36,7 +36,8 @@ void quick_sort(int *array, size_t size);
 void counting_sort(int *array, size_t size);
 
 void merge_sort(int *array, size_t size);
-void devide_conquer(int *array, int begin, int end, int *buffer);
+void m_sort(int *array, int begin, int end);
+void merge(int *array, int begin, int mid, int end);
 
 void heap_sort(int *array, size_t size);
 void heapify(int *array, size_t size, int i, size_t total_size);

@@ -11,51 +11,57 @@
  * @end: the ending index
  * @buffer: axulary buffer
  */
-void merge(int *array, int begin, int mid, int end, int *buffer)
+void merge(int *array, int begin, int mid, int end)
 {
-	int len1, i, j, index1, index2, merged_index;
+	int len1, i, j, *leftArr, index1, index2, merged_index;
 
 	printf("Merging...\n");
 
 	len1 = mid - begin + 1;
-	/* Copy data to temp buffer leftArray and rightArray */
+
+	leftArr = malloc(sizeof(int) * len1);
+	if (!leftArr)
+		exit(EXIT_FAILURE);
+
+	/* Copy data to temp buffer leftArray */
 	printf("[left]: ");
 	i = 0;
 	for (; i < len1; i++)
-		buffer[i] = array[begin + i];
-	
-	print_array(buffer, len1);
+		leftArr[i] = array[begin + i];
+
+	print_array(leftArr, len1);
 
 	printf("[right]: ");
-	for (j = mid + 1; j <= end; i++, j++)
+	for (j = mid + 1; j < end; i++, j++)
 	{
-		buffer[i] = array[j];
+		printf("%i, ", array[j]);
 	}
-	print_array(buffer + len1, end - mid);
+	printf("%i\n", array[end]);
 
-	index1 = 0,          /* Initial index of first sub-array */
-	index2 = mid + 1;           /* Initial index of second sub-array */
+	index1 = 0;			  /* Initial index of first sub-array */
+	index2 = mid + 1;	  /* Initial index of second sub-array */
 	merged_index = begin; /* Initial index of merged array */
 
 	/* Merge the temp arrays back into array[left..right] */
 	while (index1 < len1 && index2 <= end)
 	{
-		if (buffer[index1] <= buffer[index2])
+		if (leftArr[index1] <= array[index2])
 		{
-			array[merged_index] = buffer[index1];
+			array[merged_index] = leftArr[index1];
 			index1++;
 		}
 		else
 		{
-			array[merged_index] = buffer[index2];
+			array[merged_index] = array[index2];
 			index2++;
 		}
 		merged_index++;
 	}
+
 	/* Copy the remaining elements of arr1[], if there are any */
 	while (index1 < len1)
 	{
-		array[merged_index] = buffer[index1];
+		array[merged_index] = leftArr[index1];
 		index1++;
 		merged_index++;
 	}
@@ -63,23 +69,23 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	/* Copy the remaining elements of arr2[], if there are any */
 	while (index2 <= end)
 	{
-		array[merged_index] = buffer[index2];
+		array[merged_index] = array[index2];
 		index2++;
 		merged_index++;
 	}
 
 	printf("[Done]: ");
-	print_array(array, end + 1);
+	print_array(array + begin, end - begin + 1);
 }
 
 /**
- * devide_conquer - recursive merge sort
+ * m_sort - recursive merge sort
  * @array: array of integers
  * @begin: the starting index
  * @end: the ending index
  * @buffer: axulary buffer
  */
-void devide_conquer(int *array, int begin, int end, int *buffer)
+void m_sort(int *array, int begin, int end)
 {
 	int mid;
 
@@ -88,11 +94,11 @@ void devide_conquer(int *array, int begin, int end, int *buffer)
 
 	mid = begin + (end - begin) / 2;
 
-	devide_conquer(array, begin, mid, buffer);
+	m_sort(array, begin, mid);
 
-	devide_conquer(array, mid + 1, end, buffer);
+	m_sort(array, mid + 1, end);
 
-	merge(array, begin, mid, end, buffer);
+	merge(array, begin, mid, end);
 }
 
 /**
@@ -102,13 +108,7 @@ void devide_conquer(int *array, int begin, int end, int *buffer)
  */
 void merge_sort(int *array, size_t size)
 {
-	int *buffer;
-
-	buffer = malloc(size * sizeof(int));
-	if (!buffer)
-		exit(EXIT_FAILURE);
-
-	devide_conquer(array, 0, size - 1, buffer);
+	m_sort(array, 0, size - 1);
 }
 
 /*
