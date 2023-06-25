@@ -13,11 +13,13 @@
  */
 void merge(int *array, int begin, int mid, int end, int *buffer)
 {
-	int len1, i, j, index1, index2, merged_index;
+	int len1, len2, i, j, index1, index2, merged_index;
 
 	printf("Merging...\n");
 
 	len1 = mid - begin + 1;
+	len2 = end - mid;
+	
 	/* Copy data to temp buffer leftArray and rightArray */
 	printf("[left]: ");
 	i = 0;
@@ -34,11 +36,11 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	print_array(buffer + len1, end - mid);
 
 	index1 = 0,          /* Initial index of first sub-array */
-	index2 = mid + 1;           /* Initial index of second sub-array */
+	index2 = len1;           /* Initial index of second sub-array */
 	merged_index = begin; /* Initial index of merged array */
 
 	/* Merge the temp arrays back into array[left..right] */
-	while (index1 < len1 && index2 <= end)
+	while (index1 < len1 && index2 < len1 + len2)
 	{
 		if (buffer[index1] <= buffer[index2])
 		{
@@ -61,7 +63,7 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	}
 
 	/* Copy the remaining elements of arr2[], if there are any */
-	while (index2 <= end)
+	while (index2 < len1 + len2)
 	{
 		array[merged_index] = buffer[index2];
 		index2++;
@@ -69,7 +71,7 @@ void merge(int *array, int begin, int mid, int end, int *buffer)
 	}
 
 	printf("[Done]: ");
-	print_array(array, end + 1);
+	print_array(array + begin, len1 + len2);
 }
 
 /**
