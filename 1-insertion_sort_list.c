@@ -16,7 +16,7 @@ void insertion_sort_list(listint_t **list)
 
 	for (i = (*list)->next; i; i = i->next)
 	{
-		for (cur = i; cur; cur = cur->prev)
+		for (cur = i; cur->prev; cur = cur->prev)
 		{
 			if (cur->n < cur->prev->n)
 			{
@@ -24,27 +24,6 @@ void insertion_sort_list(listint_t **list)
 				cur->n = cur->prev->n;
 				cur->prev->n = tmp;
 				print_list(*list);
-				/*
-				if (cur->prev->prev)
-				{
-					pre_cur = cur->prev;
-					pre_cur->prev->next = cur;
-					pre_cur->next = cur->next;
-					cur->prev = pre_cur->prev;
-					pre_cur->prev = cur;
-					cur->next = pre_cur;
-					print_list(*list);
-				}
-				else
-				{
-					cur->prev = pre_cur->prev;
-					pre_cur->next = cur->next;
-					cur->next = pre_cur;
-					pre_cur->prev = cur;
-					*list = cur;
-					print_list(*list);
-				}
-				*/
 			}
 		}
 	}
