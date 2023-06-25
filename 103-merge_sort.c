@@ -9,33 +9,26 @@
  * @begin: the starting index
  * @mid: the mid index
  * @end: the ending index
- * @buffer: axulary buffer
  */
 void merge(int *array, int begin, int mid, int end)
 {
 	int len1, i, j, *leftArr, index1, index2, merged_index;
 
 	printf("Merging...\n");
-
 	len1 = mid - begin + 1;
-
 	leftArr = malloc(sizeof(int) * len1);
 	if (!leftArr)
 		exit(EXIT_FAILURE);
-
 	/* Copy data to temp buffer leftArray */
-	printf("[left]: ");
-	i = 0;
-	for (; i < len1; i++)
-		leftArr[i] = array[begin + i];
 
+	printf("[left]: ");
+	for (i = 0; i < len1; i++)
+		leftArr[i] = array[begin + i];
 	print_array(leftArr, len1);
 
 	printf("[right]: ");
 	for (j = mid + 1; j < end; i++, j++)
-	{
 		printf("%i, ", array[j]);
-	}
 	printf("%i\n", array[end]);
 
 	index1 = 0;			  /* Initial index of first sub-array */
@@ -46,36 +39,19 @@ void merge(int *array, int begin, int mid, int end)
 	while (index1 < len1 && index2 <= end)
 	{
 		if (leftArr[index1] <= array[index2])
-		{
-			array[merged_index] = leftArr[index1];
-			index1++;
-		}
+			array[merged_index++] = leftArr[index1++];
 		else
-		{
-			array[merged_index] = array[index2];
-			index2++;
-		}
-		merged_index++;
+			array[merged_index++] = array[index2++];
 	}
-
 	/* Copy the remaining elements of arr1[], if there are any */
 	while (index1 < len1)
-	{
-		array[merged_index] = leftArr[index1];
-		index1++;
-		merged_index++;
-	}
-
+		array[merged_index++] = leftArr[index1++];
 	/* Copy the remaining elements of arr2[], if there are any */
 	while (index2 <= end)
-	{
-		array[merged_index] = array[index2];
-		index2++;
-		merged_index++;
-	}
-
+		array[merged_index++] = array[index2++];
 	printf("[Done]: ");
 	print_array(array + begin, end - begin + 1);
+	free(leftArr);
 }
 
 /**
@@ -83,7 +59,6 @@ void merge(int *array, int begin, int mid, int end)
  * @array: array of integers
  * @begin: the starting index
  * @end: the ending index
- * @buffer: axulary buffer
  */
 void m_sort(int *array, int begin, int end)
 {
@@ -92,7 +67,7 @@ void m_sort(int *array, int begin, int end)
 	if (begin >= end)
 		return; /* base case for the recursion */
 
-	mid = begin + (end - begin) / 2;
+	mid = (begin + end - 1) / 2;
 
 	m_sort(array, begin, mid);
 
