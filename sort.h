@@ -33,6 +33,8 @@ int partition(int *array, int low, int high, size_t size);
 void q_sort(int *array, int low, int high, size_t size);
 void quick_sort(int *array, size_t size);
 
+void shell_sort(int *array, size_t size);
+
 void counting_sort(int *array, size_t size);
 
 void merge_sort(int *array, size_t size);
