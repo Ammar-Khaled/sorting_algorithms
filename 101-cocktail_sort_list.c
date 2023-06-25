@@ -1,6 +1,27 @@
 #include "sort.h"
 
 /**
+ * print_array - Prints an array of integers
+ *
+ * @array: The array to be printed
+ * @size: Number of elements in @array
+ */
+void print_array(const int *array, size_t size)
+{
+    size_t i;
+
+    i = 0;
+    while (array && i < size)
+    {
+        if (i > 0)
+            printf(", ");
+        printf("%d", array[i]);
+        ++i;
+    }
+    printf("\n");
+}
+
+/**
  * cocktail_sort_list - sorts a doubly linked list of integers in ascending order
  * using the Cocktail shaker sort algorithm
  * @list: list of integers
@@ -61,8 +82,8 @@ void cocktail_sort_list(listint_t **list)
             if (arr[i] > arr[i + 1])
             {
                 tmp = arr[i];
-                arr[i] = arr[i - 1];
-                arr[i - 1] = tmp;
+                arr[i] = arr[i + 1];
+                arr[i + 1] = tmp;
 
                 swapped = 1;
 
@@ -70,5 +91,10 @@ void cocktail_sort_list(listint_t **list)
             }
         }
         start++;
+    }
+
+    for (i = 0, cur = *list; i < len; i++, cur = cur->next)
+    {
+        cur->n = arr[i];
     }
 }
