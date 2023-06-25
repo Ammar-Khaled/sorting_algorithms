@@ -13,7 +13,7 @@ void shell_sort(int *array, size_t size)
 
 	/* generate Knuth Gap Sequence */
 	gap = 1;
-	while (gap < (int)size)
+	while (gap < ceil(size / 3))
 	{
 		gap = 3 * gap + 1;
 	}
@@ -35,16 +35,16 @@ void shell_sort(int *array, size_t size)
 	{
 		for (i = gap; i < (int)size; i++)
 		{
-			for (j = i; j >= gap; j -= gap)
+			tmp = array[i];
+
+			for (j = i; j >= gap && tmp < array[j - gap]; j -= gap)
 			{
-				if (array[j] < array[j - gap])
-				{
-					/* swap */
-					tmp = array[j];
-					array[j] = array[j - gap];
-					array[j - gap] = tmp;
-				}
+				/* shift */
+				array[j] = array[j - gap];
 			}
+
+			/* put the original array[i] in its correct location */
+			array[j] = tmp;
 		}
 		print_array(array, size);
 	}
