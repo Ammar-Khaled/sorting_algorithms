@@ -12,6 +12,8 @@ int get_int_value(char ch)
 {
 	switch (ch)
 	{
+	case '1':
+		return (10);
 	case 'A':
 		return (1);
 	case 'J':
@@ -21,7 +23,7 @@ int get_int_value(char ch)
 	case 'K':
 		return (13);
 	default:
-		return (atoi(ch));
+		return (atoi(&ch));
 	}
 }
 
