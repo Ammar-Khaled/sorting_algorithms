@@ -13,7 +13,7 @@ void swap(int *a, int *b)
 }
 
 /**
- * partition - takes the last element as `pivot`,
+ * lomuto_partition - takes the last element as `pivot`,
  * places it at its correct position in sorted array,
  * such that all smaller elements are to the left of `pivot`
  * and all greater elements or equal are to the right of `pivot`
@@ -23,7 +23,7 @@ void swap(int *a, int *b)
  * @size: size of the whole array => required for printing
  * Return: index of the `pivot` after placing in the right place
  */
-int partition(int *array, int low, int high, size_t size)
+int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int j;
 
@@ -74,7 +74,7 @@ void q_sort(int *array, int low, int high, size_t size)
 {
 	if (low < high)
 	{
-		int pivot_index = partition(array, low, high, size);
+		int pivot_index = lomuto_partition(array, low, high, size);
 		/* array[pivot_index] is now at right place */
 
 		/* quick_sort the left subarray */
