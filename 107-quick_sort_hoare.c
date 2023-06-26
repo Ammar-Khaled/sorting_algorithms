@@ -40,26 +40,23 @@ int hoare_partition(int *array, int low, int high, size_t size)
 	{
 
 		/* Find leftmost element greater than or equal to the pivot */
-		do
-		{
+		do {
 			i++;
 		} while (array[i] < pivot);
 
 		/* Find rightmost element smaller than or equal to the pivot */
-		do
-		{
+		do {
 			j--;
 		} while (array[j] > pivot);
 
 		if (i >= j)
 		{
-			return (j);
+			return (i);
 		}
 
 		swap(array + i, array + j);
 		print_array(array, size);
 	}
-
 }
 
 /**
@@ -77,9 +74,9 @@ void q_sort(int *array, int low, int high, size_t size)
 		/* array[pivot_index] is now at right place */
 
 		/* quick_sort the left subarray */
-		q_sort(array, low, pivot_index, size);
+		q_sort(array, low, pivot_index - 1, size);
 		/* quick_sort the right subarray */
-		q_sort(array, pivot_index + 1, high, size);
+		q_sort(array, pivot_index, high, size);
 	}
 }
 
