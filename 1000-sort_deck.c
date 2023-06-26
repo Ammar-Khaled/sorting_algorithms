@@ -2,26 +2,52 @@
 #include <stdio.h>
 #include <string.h>
 
+/**
+ * get_int_value - convert the value of the card to an int
+ * @ch: the first character in the value of the card
+ *
+ * Return: the value as integer
+ */
+int get_int_value(char ch)
+{
+	switch (ch)
+	{
+	case 'A':
+		return (1);
+	case 'J':
+		return (11);
+	case 'Q':
+		return (12);
+	case 'K':
+		return (13);
+	default:
+		return (atoi(ch));
+	}
+}
 
 /**
  * compare_cards - compare cards for the qsort function
  * @a: one card
  * @b: another card
- * Return:
+ * Return: relative order
  */
 int compare_cards(const void *a, const void *b)
 {
 	card_t *c1, *c2;
+	int v1, v2;
 
-	c1 = (card_t *)a;
-	c2 = (card_t *)b;
+	c1 = *(card_t **)a;
+	c2 = *(card_t **)b;
 
 	if (c1->kind == c2->kind)
 	{
-		return (strcmp(c1->value, c2->value));
+		v1 = get_int_value(c1->value[0]);
+		v2 = get_int_value(c2->value[0]);
+
+		return (v1 - v2);
 	}
 
-	return (c1->kind == c2->kind);
+	return (c1->kind - c2->kind);
 }
 
 /**
