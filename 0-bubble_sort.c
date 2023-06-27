@@ -22,7 +22,7 @@ void bubble_sort(int *array, size_t size)
 	unsigned int swapped = 0, i, j;
 
 	/* loop n-1 iterations */
-	for (i = 0; i < size - 1; ++i)
+	for (i = 0; i < size; ++i)
 	{
 
 		/* the last i elements are already in place */
