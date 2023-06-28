@@ -34,15 +34,15 @@ void print_array(const int *array, size_t size)
 }
 
 /**
- * cocktail_sort_list - sorts a doubly linked list of integers ascendingly
- * using the Cocktail shaker sort algorithm
- * @list: list of integers
+ * get_len - get list len
+ * @list: list
+ *
+ * Return: length
  */
-void cocktail_sort_list(listint_t **list)
+int get_len(listint_t **list)
 {
-	int swapped, len, start, end, i;
 	listint_t *cur;
-	int *arr;
+	int len;
 
 	cur = *list;
 	len = 0;
@@ -51,9 +51,22 @@ void cocktail_sort_list(listint_t **list)
 		len++;
 		cur = cur->next;
 	}
+
+	return (len);
+}
+
+/**
+ * cocktail_sort_list - sorts a doubly linked list of integers ascendingly
+ * using the Cocktail shaker sort algorithm
+ * @list: list of integers
+ */
+void cocktail_sort_list(listint_t **list)
+{
+	int swapped, len, start, end, i, *arr;
+	listint_t *cur;
+
+	len = get_len(list);
 	arr = malloc(sizeof(int) * len);
-	if (!arr)
-		exit(EXIT_FAILURE);
 	for (i = 0, cur = *list; i < len; i++, cur = cur->next)
 		arr[i] = cur->n;
 	swapped = 1;
