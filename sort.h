@@ -50,4 +50,9 @@ void heapify(int *array, size_t size, int i, size_t total_size);
 void count_sort_for_radix(int *array, int n, int placement_value);
 void radix_sort(int *array, size_t size);
 
+
+void bitonicSort(int *arr, int low, int cnt, int dir, int size);
+void bitonic_sort(int *array, size_t size);
+void bitonicMerge(int *arr, int low, int cnt, int dir, int size);
+
 #endif
