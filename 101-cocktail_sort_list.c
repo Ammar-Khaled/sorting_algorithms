@@ -62,11 +62,11 @@ int get_len(listint_t **list)
  */
 void cocktail_sort_list(listint_t **list)
 {
-	if (!list || !*list)
-		return;
 	int swapped, len, start, end, i, *arr;
 	listint_t *cur;
 
+	if (!list || !*list)
+		return;
 	len = get_len(list);
 	arr = malloc(sizeof(int) * len);
 	for (i = 0, cur = *list; i < len; i++, cur = cur->next)
